@@ -1,0 +1,39 @@
+<html>
+<body>
+<h1>Kellans Drawing h1</h1>
+<h2>Kellans Drawing h2</h2>
+<h3>Kellans Drawing h3</h3>
+<h4>Kellans Drawing h4</h4>
+<canvas id="imgCanvas" width="600" height="400" onClick="draw(event)"></canvas>
+
+<script>
+// JS here
+function randCol(){
+	var r = Math.round( Math.random() * 240 + 16 );
+	var g = Math.round( Math.random() * 240 + 16 );
+	var b = Math.round( Math.random() * 240 + 16 );
+	var col = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+	return col;
+}
+function draw(e){
+	var canvas = document.getElementById("imgCanvas");
+	var ctx = canvas.getContext("2d");
+	var rect = canvas.getBoundingClientRect();
+	var posx = e.clientX - rect.left;
+	var posy = e.clientY - rect.top;
+	console.log("posx="+posx+" posy="+posy);
+
+	ctx.fillStyle=randCol();
+	ctx.beginPath();
+	ctx.arc(posx,posy,50,0,Math.PI*2);
+	ctx.fill();
+
+	ctx.strokeStyle="#000000";
+	ctx.beginPath();
+	ctx.arc(posx,posy,50,0,Math.PI*2);
+	ctx.stroke();
+}
+</script>
+
+</body>
+</html>
